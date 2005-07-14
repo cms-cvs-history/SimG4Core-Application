@@ -1,0 +1,50 @@
+process PROD  = 
+	{
+		source = EmptyInputService { int32 maxEvents = 10 }
+		module o1 = PoolOutputModule {string fileName = "simevent.root"}
+ 		module r = OscarProducer 
+		{ 
+			int32 RunNumber = 1001
+			int32 G4EventManagerVerbosity = 0
+			int32 G4StackManagerVerbosity = 0
+			int32 G4TrackingManagerVerbosity = 0
+			bool OverrideUserStackingAction = true
+			string GeometryConfiguration = "TESTconfiguration.xml" 
+		  PSet Physics =
+		  {
+			bool DummyEMPhysics = true
+			double DefaultCutValue = 10.
+			int32 Verbosity = 0			
+		  }
+		  PSet Generator = 
+		  {
+			bool ApplyPtCuts = true
+			bool ApplyEtaCuts = true
+			bool ApplyPhiCuts = false
+			double MinPhiCut = 0.
+			double MaxPhiCut = 360.
+			double MinEtaCut = -5.5
+			double MaxEtaCut = 5.5
+			double MinPtCut = 40.
+			double MaxPtCut = 999999.
+			string InputFileName = "SherpaWriteHepMC.dat"
+			int32 Verbosity = 0
+		  }
+		  PSet RunAction = { string StopFile = "StopRun" }
+		  PSet EventAction =
+		  {
+			bool CollapsePrimaryVertices = false
+			string StopFile = "StopRun"
+			bool debug = false
+		  }
+		  PSet TrackingAction = { bool DetailedTiming = false }
+		  PSet SteppingAction =
+		  {
+			bool   KillBeamPipe = true
+			double CriticalEnergyForVacuum = 2.0
+			double CriticalDensity = 1.e-25
+			int32  Verbosity = 0
+		  }
+		}
+		path p1 = { r, o1 }
+	}		
