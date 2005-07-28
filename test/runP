@@ -15,6 +15,7 @@ process PROD  =
 			}
 			PSet Physics =
 			{
+				string type = "SimG4Core/Physics/DummyPhysics"
 				bool DummyEMPhysics = true
 				double DefaultCutValue = 10.
 				int32 Verbosity = 0			
