@@ -1,6 +1,8 @@
 process PROD  = 
 	{
-		source = EmptyInputService { int32 maxEvents = 99 }
+		source = EmptyInputService { int32 maxEvents = 1 }
+	        es_source = XMLIdealGeometryESSource {string GeometryConfiguration="TESTconfiguration.xml"}
+
 		module o1 = PoolOutputModule { string fileName = "simevent.root" }
  		module r = OscarProducer 
 		{ 
@@ -14,10 +16,6 @@ process PROD  =
 			string PhysicsTablesDirectory = "PhysicsTables"
 			bool StorePhysicsTables = false
 			bool RestorePhysicsTables = true
-			PSet Geometry =
-			{
-				string GeometryConfiguration = "TESTconfiguration.xml" 
-			}
 			PSet Physics =
 			{
 				string type = "SimG4Core/Physics/QGSP"
