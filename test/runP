@@ -1,8 +1,8 @@
 process PROD  = 
 	{
-		source = EmptyInputService { int32 maxEvents = 1 }
-	        es_source = XMLIdealGeometryESSource {string GeometryConfiguration="TESTconfiguration.xml"}
-
+		source = EmptyInputService { int32 maxEvents = 10 }
+		es_source = XMLIdealGeometryESSource 
+		{ string GeometryConfiguration = "TESTconfiguration.xml" }	
 		module o1 = PoolOutputModule { string fileName = "simevent.root" }
  		module r = OscarProducer 
 		{ 
@@ -11,14 +11,14 @@ process PROD  =
 			int32 G4StackManagerVerbosity = 0
 			int32 G4TrackingManagerVerbosity = 0
 			bool  OverrideUserStackingAction = true
-			bool StoreRndmSeeds = true
+			bool StoreRndmSeeds = false
 			bool RestoreRndmSeeds = false
 			string PhysicsTablesDirectory = "PhysicsTables"
 			bool StorePhysicsTables = false
-			bool RestorePhysicsTables = true
+			bool RestorePhysicsTables = false
 			PSet Physics =
 			{
-				string type = "SimG4Core/Physics/QGSP"
+				string type = "SimG4Core/Physics/DummyPhysics"
 				bool DummyEMPhysics = true
 				double DefaultCutValue = 10.
 				int32 Verbosity = 0			
