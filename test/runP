@@ -1,6 +1,6 @@
 process PROD  = 
 	{
-		source = EmptyInputService { int32 maxEvents = 10 }
+		source = InputSource { int32 maxEvents = 10 }
 		es_source = XMLIdealGeometryESSource 
 		{ string GeometryConfiguration = "TESTconfiguration.xml" }	
 		module o1 = PoolOutputModule { string fileName = "simevent.root" }
