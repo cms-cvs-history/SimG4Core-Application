@@ -2,8 +2,7 @@ process PROD  =
 	{
 		source = EmptySource { int32 maxEvents = 10 }
 		es_source = XMLIdealGeometryESSource 
-		{ string GeometryConfiguration = "SimConfiguration.xml" }	
-                es_module = VolumeBasedMagneticFieldESProducer {} 
+		{ string GeometryConfiguration = "TESTconfiguration.xml" }	
 		module o1 = PoolOutputModule { string fileName = "simevent.root" }
  		module r = OscarProducer 
 		{ 
