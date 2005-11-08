@@ -52,6 +52,21 @@ process PROD  =
 				double CriticalDensity = 1.e-25
 				int32  Verbosity = 0
 			}
+ 			PSet CaloSD =
+			{
+				double EminTrack = 1.0
+				int32  CheckHits = 25
+				bool   UseMap = true
+				int32  Verbosity = 0
+				bool   DetailedTiming = false
+			}
+			pset ECalSD =
+			{
+				bool   UseBirkLaw = false
+				double BirkC1 = 0.013
+				double BirkC2 = 9.6e-6
+				int32  Verbosity = 0
+			}
 		}
 		path p1 = { r, o1 }
 	}		
