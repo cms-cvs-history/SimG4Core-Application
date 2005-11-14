@@ -60,7 +60,7 @@ process PROD  =
 				int32  Verbosity = 0
 				bool   DetailedTiming = false
 			}
-			pset ECalSD =
+			PSet ECalSD =
 			{
 				bool   UseBirkLaw = false
 				double BirkC1 = 0.013
