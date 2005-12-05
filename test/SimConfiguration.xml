@@ -198,8 +198,8 @@
       <File name="Geometry/MuonCommonData/muonNumbering.xml"   url="."/>
       <File name="Geometry/MuonSimData/muonSens.xml"   url="."/> 
       <File name="Geometry/MuonSimData/muonProdCuts.xml"   url="."/>
-									        
- </Include>								        
+      <File name="Geometry/CMSCommonData/MagneticFieldVolumes.xml" url="."/> 
+</Include>								        
  <Root fileName="cms.xml"          logicalPartName="OCMS"/>		        
 </Configuration>							        
 									        
