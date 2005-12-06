@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <Configuration xmlns="." xmlns:xsi="." xsi:schemaLocation= "." name="CMSConfiguration" version="0">
 <Include>
-      <File name="Geometry/CMSCommonData/data/cms.xml"                               url="."/>
-      <File name="Geometry/CMSCommonData/data/materials.xml"                         url="."/>  
-      <File name="Geometry/CMSCommonData/data/rotations.xml"                         url="."/>
       <File name="Geometry/CMSCommonData/data/MagneticFieldVolumes.xml" url="."/> 
  </Include>								        
  <Root fileName="cms.xml"          logicalPartName="OCMS"/>		        
