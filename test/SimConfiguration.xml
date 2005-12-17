@@ -187,6 +187,6 @@
       <File name="Geometry/MuonSimData/data/muonProdCuts.xml"   url="."/>
       <File name="SimG4Core/MagneticField/FieldParameters.xml"   url="."/>
 </Include>								        
- <Root fileName="cms.xml"          logicalPartName="World"/>		        
+ <Root fileName="cms.xml"          logicalPartName="OCMS"/>		        
 </Configuration>							        
 									        
