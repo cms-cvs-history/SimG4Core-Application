@@ -174,9 +174,6 @@
       <File name="Geometry/TrackerCommonData/data/tecmodpar.xml"		        url="."/>
       <File name="Geometry/TrackerCommonData/data/tecmaterial.xml"		        url="."/>
       <File name="Geometry/TrackerCommonData/data/tecConfiguration.xml"	        url="."/>	       
-      <File name="Geometry/TrackerCommonData/data/trackerStructureTopology.xml"      url= "."/>
-      <File name="Geometry/TrackerSimData/data/trackersens.xml"                      url="."/>   
-      <File name="Geometry/TrackerSimData/data/trackerProdCuts.xml"                  url="."/>   
       <File name="Geometry/MuonCommonData/data/mbCommon.xml"   url="."/>
       <File name="Geometry/MuonCommonData/data/mb1.xml"   url="."/>
       <File name="Geometry/MuonCommonData/data/mb2.xml"   url="."/>
@@ -185,9 +182,6 @@
       <File name="Geometry/MuonCommonData/data/mf.xml"   url="."/>
       <File name="Geometry/MuonCommonData/data/muonYoke.xml"   url="."/>
       <File name="Geometry/MuonCommonData/data/muonNumbering.xml"   url="."/>
-      <File name="Geometry/MuonSimData/data/muonSens.xml"   url="."/> 
-      <File name="Geometry/MuonSimData/data/muonProdCuts.xml"   url="."/>
-      <File name="SimG4Core/MagneticField/FieldParameters.xml"   url="."/>
       <File name="Geometry/HcalCommonData/data/hcalrotations.xml"       url="."/>
       <File name="Geometry/HcalCommonData/data/hcalalgo.xml"            url="."/>
       <File name="Geometry/EcalCommonData/data/ecal.xml"                url="."/>
@@ -196,6 +190,14 @@
       <File name="Geometry/HcalCommonData/data/hcalouteralgo.xml"       url="."/>
       <File name="Geometry/HcalCommonData/data/hcalforwardalgo.xml"     url="."/>
       <File name="Geometry/HcalCommonData/data/hcalforwardmaterial.xml" url="."/>
+
+      <File name="Geometry/TrackerCommonData/data/trackerStructureTopology.xml"      url= "."/>
+      <File name="Geometry/TrackerSimData/data/trackersens.xml"                      url="."/>   
+      <File name="Geometry/TrackerSimData/data/trackerProdCuts.xml"                  url="."/>   
+      <File name="Geometry/MuonSimData/data/muonSens.xml"   url="."/> 
+      <File name="Geometry/MuonSimData/data/muonProdCuts.xml"   url="."/>
+      <File name="SimG4Core/MagneticField/FieldParameters.xml"   url="."/>
+
       <File name="Geometry/EcalSimData/data/ecalsens.xml"               url="."/>
       <File name="Geometry/HcalCommonData/data/hcalsens.xml"            url="."/>
       <File name="Geometry/HcalSimData/data/CaloUtil.xml"               url="."/>
