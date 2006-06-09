@@ -30,6 +30,9 @@
          double DefaultCutValue = 1000.  # cuts in cm, i.e. 10m
          untracked int32 Verbosity = 0   # 1 will print cuts as they get set fdrom DD
                                          # 2 will do as 1 + will dump Geant4 table of cuts
+	 double GFlashEmin = 1.0
+	 double GFlashEmax = 1000000.0
+	 double GFlashToKill = 0.1
       }
       PSet Generator =
       {
@@ -52,10 +55,16 @@
          string StopFile = "StopRun"
          untracked bool debug = false
       }
-
       PSet TrackingAction =
       {
          untracked bool DetailedTiming = false
+      }
+      PSet SteppingAction =
+      {
+         bool   KillBeamPipe = true
+         double CriticalEnergyForVacuum = 2.0
+         double CriticalDensity = 1.e-15
+         untracked int32  Verbosity = 0
       }
       PSet UtilityActions =
       {
@@ -68,15 +77,7 @@
                untracked int32 TrackMin = 0
                untracked int32 TrackMax = 0
                untracked int32 TrackStep = 1
-               untracked int32 VerboseLevel = 0 
-      }
-
-      PSet SteppingAction =
-      {
-         bool   KillBeamPipe = true
-         double CriticalEnergyForVacuum = 2.0
-         double CriticalDensity = 1.e-15
-         untracked int32  Verbosity = 0
+               untracked int32 VerboseLevel = 0
       }
       PSet TrackerSD =
       {
