@@ -13,7 +13,7 @@
       string PhysicsTablesDirectory = "PhysicsTables"
       bool StorePhysicsTables = false
       bool RestorePhysicsTables = false
-      #VPSet Watchers = { }
+      VPSet Watchers = { }
       PSet MagneticField =
       {
          double delta = 1.
