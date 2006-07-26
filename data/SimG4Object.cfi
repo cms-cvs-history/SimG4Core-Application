@@ -43,8 +43,8 @@
          double MaxPhiCut = 360. # internally converted to radians, (-pi,pi) range accounted for
          double MinEtaCut = -5.5
          double MaxEtaCut = 5.5
-         double MinPtCut = 40.
-         double MaxPtCut = 999999.
+         double MinPtCut = 40.       # the pt-cut is in MeV
+         double MaxPtCut = 99999999. # this, the ptmax=99.TeV in this case
          untracked int32 Verbosity = 0
       }
 
