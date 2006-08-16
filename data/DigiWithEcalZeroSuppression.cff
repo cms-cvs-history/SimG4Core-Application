@@ -9,10 +9,12 @@
    #include "SimCalorimetry/EcalTrigPrimProducers/data/ecaltp.cfi"
  
    # Selective Readout Processor producer
-   include "SimCalorimetry/EcalSelectiveReadoutProducers/data/ecalSelectiveReadout.cfi"
+   #include "SimCalorimetry/EcalSelectiveReadoutProducers/data/ecalSelectiveReadout.cfi" # this is old (081)
+   include "SimCalorimetry/EcalSelectiveReadoutProducers/data/ecalDigis.cfi"
  
    # Preshower Zero suppression producer
-   include "SimCalorimetry/EcalZeroSuppressionProducers/data/esZeroSuppression.cfi"
+   #include "SimCalorimetry/EcalZeroSuppressionProducers/data/esZeroSuppression.cfi" # this is old (081)
+   include "SimCalorimetry/EcalZeroSuppressionProducers/data/ecalPreshowerDigis.cfi"
    
-   sequence doAllDigiWithEcalZeroSup = { doAllDigi, ecalSelectiveReadout, esZeroSuppression }
+   sequence doAllDigiWithEcalZeroSup = { doAllDigi, ecalDigis, ecalPreshowerDigis }
 
