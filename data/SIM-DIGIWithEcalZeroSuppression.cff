@@ -12,7 +12,7 @@
 
    # Geant4-based CMS Detector simulation
    #
-   include "SimG4Core/Application/data/SimG4Object.cfi"
+   include "SimG4Core/Application/data/g4SimHits.cfi"
 
    # This is the full sequence of digitizers 
    # (Pixels, SiStrips, Ecal, Hcal, Muon(CSC,DT,RPC)
