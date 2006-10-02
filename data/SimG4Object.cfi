@@ -36,7 +36,7 @@
       }
       PSet Generator =
       {
-         InputTag HepMCProductLabel = VtxSmeared  # alternative would be : 
+         string HepMCProductLabel = "VtxSmeared"  # alternative would be : 
 	                                          # InputTag MCProductLabel = source
 	                                          # to get the "original" on (without vtx smearing);
 					          # NO other MCProduct's/labels in edm::Event
