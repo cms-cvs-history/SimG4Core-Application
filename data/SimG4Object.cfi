@@ -32,14 +32,10 @@
                                          # 2 will do as 1 + will dump Geant4 table of cuts
 	 double GFlashEmin = 1.0
 	 double GFlashEmax = 1000000.0
-	 double GFlashToKill = 0.1
+	 double GFlashEToKill = 0.1
       }
       PSet Generator =
       {
-         string HepMCProductLabel = "VtxSmeared"  # alternative would be : 
-	                                          # InputTag MCProductLabel = source
-	                                          # to get the "original" on (without vtx smearing);
-					          # NO other MCProduct's/labels in edm::Event
          bool ApplyPtCuts  = true
          bool ApplyEtaCuts = true
          bool ApplyPhiCuts = false
