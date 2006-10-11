@@ -36,6 +36,10 @@
       }
       PSet Generator =
       {
+         string HepMCProductLabel = "VtxSmeared"  # alternative would be : 
+	                                          # InputTag MCProductLabel = source
+	                                          # to get the "original" on (without vtx smearing);
+					          # NO other MCProduct's/labels in edm::Event
          bool ApplyPtCuts  = true
          bool ApplyEtaCuts = true
          bool ApplyPhiCuts = false
@@ -100,7 +104,9 @@
          double BirkC2 = 9.6e-6
          bool   UseShowerLibrary = true
          bool   TestNumberingScheme = false
-      }
+         untracked bool   UseHF     = true
+         untracked bool   forTBH2   = false
+       }
       PSet CaloTrkProcessing = {
          bool   TestBeam  = false
          double EminTrack = 0.01
@@ -123,4 +129,20 @@
          double Gain            = 0.33
          bool   CheckSurvive    = false
       }
+      PSet CastorSD = {
+         untracked int32  Verbosity = 0
+      }
+      PSet TotemSD =  {
+         untracked int32  Verbosity = 0
+      }
+      PSet ZdcSD = {
+         int32  Verbosity = 0
+         double FiberDirection = 0.0
+      }
+      PSet HcalTB06BeamSD = {
+         bool   UseBirkLaw = false
+         double BirkC1 = 0.013
+         double BirkC2 = 9.6e-6
+      }
+  
    }
