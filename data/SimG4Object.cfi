@@ -59,6 +59,10 @@
          string StopFile = "StopRun"
          untracked bool debug = false
       }
+      PSet StackingAction =
+      {
+         untracked bool SavePrimaryDecayProductsAndConversions = false
+      }
       PSet TrackingAction =
       {
          untracked bool DetailedTiming = false
