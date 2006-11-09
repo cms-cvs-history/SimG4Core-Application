@@ -7,8 +7,6 @@
       untracked int32 G4TrackingManagerVerbosity = 0
       bool UseMagneticField = true
       bool OverrideUserStackingAction = true
-      bool StoreRndmSeeds = false
-      bool RestoreRndmSeeds = false
       string PhysicsTablesDirectory = "PhysicsTables"
       bool StorePhysicsTables = false
       bool RestorePhysicsTables = false
