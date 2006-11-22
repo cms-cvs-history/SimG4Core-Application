@@ -35,7 +35,10 @@
  
    # use trivial ESProducer for tests
    #
-   include "CalibCalorimetry/EcalTrivialCondModules/data/EcalTrivialCondRetriever.cfi"
+   #include "CalibCalorimetry/EcalTrivialCondModules/data/EcalTrivialCondRetriever.cfi"
+   #
+   # Now use the real one since the reconstruction requires it
+   include "RecoLocalCalo/EcalRecProducers/data/getEcalConditions_frontier.cff"
 
    include "CalibCalorimetry/HcalPlugins/data/hardwired_conditions.cfi"
 
