@@ -23,7 +23,8 @@
          #        please select "SimG4Core/Physics/DummyPhysics" for type
          #        and turn ON DummyEMPhysics
          #
-         string type = "SimG4Core/Physics/QGSP"
+         ###string type = "SimG4Core/Physics/QGSP"  ## not fully operational in G4.8.1
+	 string type = "SimG4Core/Physics/QGSP_EMV" ## G4.7.1-like backup option
          bool DummyEMPhysics = false
          bool CutsPerRegion = true
          double DefaultCutValue = 1000.  # cuts in cm, i.e. 10m
@@ -36,10 +37,7 @@
       }
       PSet Generator =
       {
-         string HepMCProductLabel = "VtxSmeared"  # alternative would be : 
-	                                          # InputTag MCProductLabel = source
-	                                          # to get the "original" on (without vtx smearing);
-					          # NO other MCProduct's/labels in edm::Event
+         string HepMCProductLabel = "source"
          bool ApplyPtCuts  = true
          bool ApplyEtaCuts = true
          bool ApplyPhiCuts = false
