@@ -37,7 +37,8 @@
       }
       PSet Generator =
       {
-         string HepMCProductLabel = "source"
+         ### string HepMCProductLabel = "source"
+         string HepMCProductLabel = "VtxSmeared"
          bool ApplyPtCuts  = true
          bool ApplyEtaCuts = true
          bool ApplyPhiCuts = false
