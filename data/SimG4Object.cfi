@@ -96,6 +96,8 @@
          untracked bool   UseMap = true
          untracked int32  Verbosity = 0
          untracked bool   DetailedTiming = false
+         untracked bool   CorrectTOFBeam = false
+         untracked double BeamPosition = 0.0
       }
       PSet ECalSD = {
          bool   UseBirkLaw = false
@@ -142,6 +144,11 @@
       PSet ZdcSD = {
          int32  Verbosity = 0
          double FiberDirection = 0.0
+      }
+      PSet EcalTBH4BeamSD = {
+         bool   UseBirkLaw = false
+         double BirkC1 = 0.013
+         double BirkC2 = 9.6e-6
       }
       PSet HcalTB06BeamSD = {
          bool   UseBirkLaw = false
