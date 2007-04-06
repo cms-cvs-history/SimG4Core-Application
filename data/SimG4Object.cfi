@@ -1,3 +1,9 @@
+   block common_heavy_suppression = {
+      untracked bool   SuppressHeavy    = false
+      untracked double IonThreshold     = 100.0
+      untracked double NeutronThreshold = 100.0
+      untracked double ProtonThreshold  = 100.0
+   }
 
    module g4SimHits = OscarProducer
    {
@@ -103,6 +109,7 @@
          bool   UseBirkLaw = false
          double BirkC1 = 0.013
          double BirkC2 = 9.6e-6
+         using common_heavy_suppression
       }
       PSet HCalSD = {
          bool   UseBirkLaw = false
@@ -112,7 +119,8 @@
          bool   TestNumberingScheme = false
          untracked bool   UseHF     = true
          untracked bool   forTBH2   = false
-       }
+         using common_heavy_suppression
+      }
       PSet CaloTrkProcessing = {
          bool   TestBeam  = false
          double EminTrack = 0.01
