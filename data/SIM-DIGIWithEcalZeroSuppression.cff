@@ -5,6 +5,7 @@
    # include "Geometry/CMSCommonData/data/cmsSimIdealGeometryXML.cfi"
    include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
    es_module = TrackerGeometricDetESModule {}
+   include "Geometry/MuonNumbering/data/muonNumberingInitialization.cfi"
    
    # Magnetic Field
    #
