@@ -22,6 +22,8 @@
       PSet MagneticField =
       {
          double delta = 1.
+         bool UseLocalMagFieldManager = false
+         untracked bool Verbosity = false
       }
       PSet Physics =
       {
