@@ -56,7 +56,7 @@
          double MaxEtaCut  =  5.5
          double MinPtCut   =  0.040  # the pt-cut is in GeV (CMS conventions)
          double MaxPtCut   =  99999. # the ptmax=99.TeV in this case
-         untracked double DecLenCut   =  10. # the minimum decay length in cm (!) for mother tracking
+         double DecLenCut   =  10.0 # the minimum decay length in cm (!) for mother tracking
          untracked int32 Verbosity = 0
       }
 
