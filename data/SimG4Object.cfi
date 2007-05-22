@@ -24,7 +24,32 @@
          double delta = 1.
          bool UseLocalMagFieldManager = false
          untracked bool Verbosity = false
+####
+# this is a provision for dfuture development
+# not used in 15x cycle
+####
+         PSet ConfGlobalMFM =
+         {
+            string Volume = "OCMS"
+	    PSet OCMS =
+	    {
+	       string Type = "CMSIMField"
+	       string Stepper = "G4ClassicalRK4"
+	       PSet G4ClassicalRK4 =
+	       {	    
+	          double MinStep = 0.1 # in mm
+	          double DeltaChord = 0.001 # in mm
+	          double DeltaOneStep = 0.001 # in mm
+	          double DeltaIntersection = 0.0001 # in mm
+	          untracked double DeltaIntersectionAndOneStep = -1.
+	          untracked double MaximumLoopCounts = 1000.
+	          untracked double MinimumEpsilonStep = 0.00001  # in mm
+	          untracked double MaximumEpsilonStep = 0.01 # in mm
+	       }
+	    }
+         }
       }
+###
       PSet Physics =
       {
          # NOTE : if you want EM Physics only,
