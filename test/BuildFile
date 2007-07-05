@@ -1,0 +1,19 @@
+<environment>
+
+  <use name=SimDataFormats/TrackingHit>
+  <use name=SimDataFormats/CaloHit>
+  <use name=SimDataFormats/Track>
+  <use name=SimDataFormats/Vertex>
+  <use name=SimDataFormats/HepMCProduct>
+  <use name=FWCore/Framework>
+  <use name=FWCore/MessageLogger>
+
+  <library file=SimHitCaloHitDumper.cc name=SimHitCaloHitDumper>
+  <flags EDM_PLUGIN=1>
+  </library>
+
+  <library file=SimTrackSimVertexDumper.cc name=SimTrackSimVertexDumper>
+  <flags EDM_PLUGIN=1>
+  </library>
+
+</environment>
