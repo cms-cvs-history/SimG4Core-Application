@@ -3,10 +3,7 @@
    # MixingModule is required for digitization, 
    # at least, in the zero-pileup mode (as below)
    # 
-   module mix = MixingModule
-   {
-      int32 bunchspace = 25
-   }
+   include "SimGeneral/MixingModule/data/mixNoPU.cfi"
 
    # Tracker Digitization
    # (modelng of the electronics response in pixels and sistrips)
