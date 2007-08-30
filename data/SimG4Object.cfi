@@ -18,6 +18,7 @@
       string PhysicsTablesDirectory = "PhysicsTables"
       bool StorePhysicsTables = false
       bool RestorePhysicsTables = false
+      vstring G4Commands = { }
       VPSet Watchers = { }
       PSet MagneticField =
       {
