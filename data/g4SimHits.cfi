@@ -96,6 +96,11 @@
       PSet StackingAction =
       {
          untracked bool SavePrimaryDecayProductsAndConversions = false
+         untracked bool   TrackNeutrino    = false
+         untracked bool   SuppressHeavy    = false
+         untracked double IonThreshold     = 50.0
+         untracked double NeutronThreshold = 50.0
+         untracked double ProtonThreshold  = 50.0
       }
       PSet TrackingAction =
       {
