@@ -1,8 +1,7 @@
    block common_heavy_suppression = {
-      untracked bool   SuppressHeavy    = false
-      untracked double IonThreshold     = 100.0
-      untracked double NeutronThreshold = 100.0
-      untracked double ProtonThreshold  = 100.0
+      double IonThreshold     = 30.0
+      double NeutronThreshold = 30.0
+      double ProtonThreshold  = 30.0
    }
 
    module g4SimHits = OscarProducer
@@ -95,12 +94,10 @@
       }
       PSet StackingAction =
       {
+         bool   TrackNeutrino    = false
+         bool   KillHeavy        = false
+         using common_heavy_suppression
          untracked bool SavePrimaryDecayProductsAndConversions = false
-         untracked bool   TrackNeutrino    = false
-         untracked bool   SuppressHeavy    = false
-         untracked double IonThreshold     = 50.0
-         untracked double NeutronThreshold = 50.0
-         untracked double ProtonThreshold  = 50.0
       }
       PSet TrackingAction =
       {
@@ -130,7 +127,9 @@
       }
 
       PSet CaloSD = {
-         double EminTrack = 1.0
+         double EminTrack     = 1.0
+         bool   SuppressHeavy = false
+         using common_heavy_suppression
          untracked int32  CheckHits = 25
          untracked bool   UseMap = true
          untracked int32  Verbosity = 0
@@ -142,7 +141,6 @@
          bool   UseBirkLaw = false
          double BirkC1 = 0.013
          double BirkC2 = 9.6e-6
-         using common_heavy_suppression
       }
       PSet HCalSD = {
          bool   UseBirkLaw = false
@@ -152,7 +150,6 @@
          bool   TestNumberingScheme = false
          untracked bool   UseHF     = true
          untracked bool   forTBH2   = false
-         using common_heavy_suppression
       }
       PSet CaloTrkProcessing = {
          bool   TestBeam  = false
