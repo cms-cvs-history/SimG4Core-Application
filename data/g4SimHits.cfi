@@ -65,6 +65,8 @@
          double G4BremsstrahlungThreshold = 0.5 # cut in GeV
          untracked int32 Verbosity = 0   # 1 will print cuts as they get set fdrom DD
                                          # 2 will do as 1 + will dump Geant4 table of cuts
+         untracked bool  EMPhysics  = true
+         untracked bool  HadPhysics = true
 	 double GFlashEmin = 1.0
 	 double GFlashEmax = 1000000.0
 	 double GFlashEToKill = 0.1
