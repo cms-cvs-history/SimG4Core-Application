@@ -190,7 +190,7 @@
          double FiberDirection = 0.0
       }
       PSet FP420SD =  {
-         untracked int32  Verbosity = 0
+         untracked int32  Verbosity = 2
       }
       PSet EcalTBH4BeamSD = {
          bool   UseBirkLaw = false
