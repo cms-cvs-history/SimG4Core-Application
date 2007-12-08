@@ -62,9 +62,9 @@ module g4SimHits = OscarProducer
 	# 2 will do as 1 + will dump Geant4 table of cuts
 	untracked bool  EMPhysics  = true
 	untracked bool  HadPhysics = true
-	double GFlashEmin = 1.0
-	double GFlashEmax = 1000000.0
-	double GFlashEToKill = 0.1
+	bool GflashEMShowerModel = false
+	bool GflashHadronShowerModel = false
+	bool GflashHistogram = false
     }
     PSet Generator =
     {
