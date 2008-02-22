@@ -80,6 +80,7 @@ module g4SimHits = OscarProducer
 	double MinPtCut   =  0.040  # the pt-cut is in GeV (CMS conventions)
 	double MaxPtCut   =  99999. # the ptmax=99.TeV in this case
 	double DecLenCut   =  10.0 # the minimum decay length in cm (!) for mother tracking
+	double EtaRegionForDecLenCut = 7.8 # the maximum eta acceptance for study the long lived particles without keeping the vertex 
 	untracked int32 Verbosity = 0
     }
     PSet RunAction = { string StopFile = "StopRun" }
