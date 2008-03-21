@@ -162,6 +162,8 @@ module g4SimHits = OscarProducer
 	double BetaThreshold    = 0.90
 	untracked bool UseHF    = true
 	untracked bool ForTBH2  = false
+	untracked bool UseLayerWt = false
+	untracked string WtFile   = "None"
     }
     PSet CaloTrkProcessing = {
 	bool   TestBeam  = false
