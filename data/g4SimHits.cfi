@@ -87,7 +87,7 @@ module g4SimHits = OscarProducer
 	double MinPtCut   =  0.040  # the pt-cut is in GeV (CMS conventions)
 	double MaxPtCut   =  99999. # the ptmax=99.TeV in this case
 	#Temporary fix we are investigating more in detail the inpact of this selection 
-	double DecLenCut  =  60000.0 # the minimum decay length in cm (!) for mother tracking
+	double DecLenCut  =  2.9 # the minimum decay length in cm (!) for mother tracking
 	using HectorEtaCut
 	untracked int32 Verbosity = 0
     }
