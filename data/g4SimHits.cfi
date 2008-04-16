@@ -86,7 +86,8 @@ module g4SimHits = OscarProducer
 	double MaxEtaCut  =  5.5
 	double MinPtCut   =  0.040  # the pt-cut is in GeV (CMS conventions)
 	double MaxPtCut   =  99999. # the ptmax=99.TeV in this case
-	double DecLenCut   =  10.0 # the minimum decay length in cm (!) for mother tracking
+	#Temporary fix we are investigating more in detail the inpact of this selection 
+	double DecLenCut  =  2.9 # the minimum decay length in cm (!) for mother tracking
 	using HectorEtaCut
 	untracked int32 Verbosity = 0
     }
@@ -102,7 +103,7 @@ module g4SimHits = OscarProducer
 	bool   TrackNeutrino    = false
 	bool   KillHeavy        = false
 	using common_heavy_suppression
-	untracked bool SavePrimaryDecayProductsAndConversions = false
+	untracked bool SavePrimaryDecayProductsAndConversions = true
     }
     PSet TrackingAction =
     {
@@ -121,7 +122,7 @@ module g4SimHits = OscarProducer
 	bool    NeverAccumulate = false
 	bool    PrintHits = false
 	double  ElectronicSigmaInNanoSeconds = 12.06
-	double  EnergyThresholdForPersistencyInGeV = 0.5
+	double  EnergyThresholdForPersistencyInGeV = 0.2
 	double  EnergyThresholdForHistoryInGeV = 0.05
     }
     PSet MuonSD =
@@ -162,6 +163,8 @@ module g4SimHits = OscarProducer
 	double BetaThreshold    = 0.90
 	untracked bool UseHF    = true
 	untracked bool ForTBH2  = false
+	untracked bool UseLayerWt = false
+	untracked string WtFile   = "None"
     }
     PSet CaloTrkProcessing = {
 	bool   TestBeam  = false
