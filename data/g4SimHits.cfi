@@ -86,8 +86,7 @@ module g4SimHits = OscarProducer
 	double MaxEtaCut  =  5.5
 	double MinPtCut   =  0.040  # the pt-cut is in GeV (CMS conventions)
 	double MaxPtCut   =  99999. # the ptmax=99.TeV in this case
-	#Temporary fix we are investigating more in detail the inpact of this selection 
-	double DecLenCut  =  2.9 # the minimum decay length in cm (!) for mother tracking
+	double DecLenCut   =  2.9 # the minimum decay length in cm (!) for mother tracking
 	using HectorEtaCut
 	untracked int32 Verbosity = 0
     }
@@ -143,9 +142,10 @@ module g4SimHits = OscarProducer
 	untracked double BeamPosition = 0.0
     }
     PSet ECalSD = {
-	bool   UseBirkLaw = false
-	double BirkC1 = 0.013
-	double BirkC2 = 9.6e-6
+	bool   UseBirkLaw = true
+	double BirkC1 = 0.00463
+	double BirkC2 = 0.0
+	double BirkC3 = 1.0
 	bool   BirkL3Parametrization = false
 	double BirkSlope = 0.253694
 	double BirkCut   = 0.10
@@ -153,9 +153,10 @@ module g4SimHits = OscarProducer
 	untracked bool TestBeam = false
     }
     PSet HCalSD = {
-	bool   UseBirkLaw = false
+	bool   UseBirkLaw = true
 	double BirkC1 = 0.013
-	double BirkC2 = 9.6e-6
+	double BirkC2 = 0.0568
+	double BirkC3 = 1.75
 	bool   UseShowerLibrary = true
 	bool   UseParametrize   = false
 	bool   TestNumberingScheme = false
@@ -215,16 +216,19 @@ module g4SimHits = OscarProducer
     PSet HcalTB02SD = {
 	untracked bool   UseBirkLaw = false
 	untracked double BirkC1 = 0.013
-	untracked double BirkC2 = 9.6e-6
+	untracked double BirkC2 = 0.0568
+	untracked double BirkC3 = 1.75
     }
     PSet EcalTBH4BeamSD = {
 	bool   UseBirkLaw = false
 	double BirkC1 = 0.013
-	double BirkC2 = 9.6e-6
+	double BirkC2 = 0.0568
+	double BirkC3 = 1.75
     }
     PSet HcalTB06BeamSD = {
 	bool   UseBirkLaw = false
 	double BirkC1 = 0.013
-	double BirkC2 = 9.6e-6
+	double BirkC2 = 0.0568
+	double BirkC3 = 1.75
     }
 }
