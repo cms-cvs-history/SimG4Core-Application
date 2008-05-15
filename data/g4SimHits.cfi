@@ -64,14 +64,18 @@ module g4SimHits = OscarProducer
 	# 2 will do as 1 + will dump Geant4 table of cuts
 	untracked bool  EMPhysics  = true
 	untracked bool  HadPhysics = true
-	untracked bool  FlagFTF    = false
 	untracked bool  FlagBERT   = false
 	untracked bool  FlagCHIPS  = false
-	untracked bool  FlagHP     = false
+	untracked bool  FlagFTF    = false
 	untracked bool  FlagGlauber= false
-	bool GflashEMShowerModel = false
-	bool GflashHadronShowerModel = false
-	bool GflashHistogram = false
+	untracked bool  FlagHP     = false
+    }
+    PSet GFlash = 
+    {
+        bool GflashEMShowerModel     = false
+        bool GflashHadronShowerModel = false
+        bool GflashHistogram         = false
+        string GflashHadronPhysics   = "QGSP"
     }
     PSet Generator =
     {
@@ -143,10 +147,10 @@ module g4SimHits = OscarProducer
     }
     PSet ECalSD = {
 	bool   UseBirkLaw = true
-	double BirkC1 = 0.00463
+	double BirkC1 = 0.03333
 	double BirkC2 = 0.0
 	double BirkC3 = 1.0
-	bool   BirkL3Parametrization = false
+	bool   BirkL3Parametrization = true
 	double BirkSlope = 0.253694
 	double BirkCut   = 0.10
 	double SlopeLightYield = 0.02
