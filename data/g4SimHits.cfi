@@ -137,6 +137,7 @@ module g4SimHits = OscarProducer
     PSet CaloSD = {
 	double EminTrack     = 1.0
 	bool   SuppressHeavy = false
+	double TmaxHit       = 1000.
 	using common_heavy_suppression
 	untracked int32  CheckHits = 25
 	untracked bool   UseMap = true
