@@ -105,7 +105,7 @@ module g4SimHits = OscarProducer
 	bool   TrackNeutrino    = false
 	bool   KillHeavy        = false
 	using common_heavy_suppression
-	untracked bool SavePrimaryDecayProductsAndConversionsInTracker = false
+	untracked bool SavePrimaryDecayProductsAndConversionsInTracker = true
 	untracked bool SavePrimaryDecayProductsAndConversionsInCalo    = false
 	untracked bool SavePrimaryDecayProductsAndConversionsInMuon    = false
 	untracked bool SaveFirstLevelSecondary                         = false
@@ -168,7 +168,7 @@ module g4SimHits = OscarProducer
 	bool   UseParametrize   = false
 	bool   TestNumberingScheme = false
 	bool   UsePMTHits       = false
-	double BetaThreshold    = 0.90
+	double BetaThreshold    = 0.70
 	untracked bool UseHF    = true
 	untracked bool ForTBH2  = false
 	untracked bool UseLayerWt = false
