@@ -54,8 +54,7 @@ module g4SimHits = OscarProducer
 	#        please select "SimG4Core/Physics/DummyPhysics" for type
 	#        and turn ON DummyEMPhysics
 	#
-	###string type = "SimG4Core/Physics/QGSP"  ## not fully operational in G4.8.1
-	string type = "SimG4Core/Physics/QGSP_BERT_EMV" ## G4.7.1-like backup option
+	string type = "SimG4Core/Physics/QGSP_BERT" 
 	bool DummyEMPhysics = false
 	bool CutsPerRegion = true
 	double DefaultCutValue = 1.0  # cuts in cm
@@ -69,13 +68,13 @@ module g4SimHits = OscarProducer
 	untracked bool  FlagFTF    = false
 	untracked bool  FlagGlauber= false
 	untracked bool  FlagHP     = false
-    }
-    PSet GFlash = 
-    {
-        bool GflashEMShowerModel     = false
-        bool GflashHadronShowerModel = false
-        bool GflashHistogram         = false
-        string GflashHadronPhysics   = "QGSP"
+        PSet GFlash = 
+        {
+            bool GflashEMShowerModel     = false
+            bool GflashHadronShowerModel = false
+            bool GflashHistogram         = false
+            string GflashHadronPhysics   = "QGSP_BERT"
+        }
     }
     PSet Generator =
     {
@@ -106,7 +105,10 @@ module g4SimHits = OscarProducer
 	bool   TrackNeutrino    = false
 	bool   KillHeavy        = false
 	using common_heavy_suppression
-	untracked bool SavePrimaryDecayProductsAndConversions = true
+	untracked bool SavePrimaryDecayProductsAndConversionsInTracker = false
+	untracked bool SavePrimaryDecayProductsAndConversionsInCalo    = false
+	untracked bool SavePrimaryDecayProductsAndConversionsInMuon    = false
+	untracked bool SaveFirstLevelSecondary                         = false
     }
     PSet TrackingAction =
     {
@@ -159,8 +161,8 @@ module g4SimHits = OscarProducer
     }
     PSet HCalSD = {
 	bool   UseBirkLaw = true
-	double BirkC1 = 0.013
-	double BirkC2 = 0.0568
+	double BirkC1 = 0.0052
+	double BirkC2 = 0.142
 	double BirkC3 = 1.75
 	bool   UseShowerLibrary = true
 	bool   UseParametrize   = false
