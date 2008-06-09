@@ -54,7 +54,7 @@ module g4SimHits = OscarProducer
 	#        please select "SimG4Core/Physics/DummyPhysics" for type
 	#        and turn ON DummyEMPhysics
 	#
-	string type = "SimG4Core/Physics/QGSP_BERT" 
+	string type = "SimG4Core/Physics/QGSP_BERT_EMV" 
 	bool DummyEMPhysics = false
 	bool CutsPerRegion = true
 	double DefaultCutValue = 1.0  # cuts in cm
@@ -73,7 +73,7 @@ module g4SimHits = OscarProducer
             bool GflashEMShowerModel     = false
             bool GflashHadronShowerModel = false
             bool GflashHistogram         = false
-            string GflashHadronPhysics   = "QGSP_BERT"
+            string GflashHadronPhysics   = "QGSP_BERT_EMV"
         }
     }
     PSet Generator =
