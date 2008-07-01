@@ -133,7 +133,7 @@ module g4SimHits = OscarProducer
     PSet MuonSD =
     {
 	double  EnergyThresholdForPersistency = 1.0
-	bool    AllMuonsPersistent = false
+	bool    AllMuonsPersistent = true
 	bool    PrintHits = false
     }
     PSet CaloSD = {
