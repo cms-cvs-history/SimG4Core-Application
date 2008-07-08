@@ -80,16 +80,16 @@ module g4SimHits = OscarProducer
     {
 	string HepMCProductLabel = "source"
 	### string HepMCProductLabel = "VtxSmeared"
-	bool ApplyPtCuts  = true
-	bool ApplyEtaCuts = true
+	bool ApplyPCuts  = true
+	double MinPCut   =  0.040  # the pt-cut is in GeV (CMS conventions)
+	double MaxPCut   =  99999. # the ptmax=99.TeV in this case
 	bool ApplyPhiCuts = false
 	double MinPhiCut  = -3.14159265358979323846 # in radians
 	double MaxPhiCut  =  3.14159265358979323846 # according to CMS conventions
+	bool ApplyEtaCuts = true
 	double MinEtaCut  = -5.5
 	double MaxEtaCut  =  5.5
-	double MinPtCut   =  0.040  # the pt-cut is in GeV (CMS conventions)
-	double MaxPtCut   =  99999. # the ptmax=99.TeV in this case
-	double DecLenCut   =  2.9 # the minimum decay length in cm (!) for mother tracking
+	double RDecLenCut   =  2.9 # the minimum radial decay length in cm (!) for mother tracking
 	using HectorEtaCut
 	untracked int32 Verbosity = 0
     }
