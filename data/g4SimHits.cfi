@@ -104,6 +104,7 @@ module g4SimHits = OscarProducer
     {
 	bool   TrackNeutrino    = false
 	bool   KillHeavy        = false
+	double MaxTrackTime     = 1000.
 	using common_heavy_suppression
 	untracked bool SavePrimaryDecayProductsAndConversionsInTracker = true
 	untracked bool SavePrimaryDecayProductsAndConversionsInCalo    = false
@@ -138,8 +139,10 @@ module g4SimHits = OscarProducer
     }
     PSet CaloSD = {
 	double EminTrack     = 1.0
-	bool   SuppressHeavy = false
 	double TmaxHit       = 1000.
+	vdouble EminHits     = {0.0, 0.0, 0.0, 0.0}
+	vstring HCNames      = {"EcalHitsEB", "EcalHitsEE", "EcalHitsES","HcalHits"}
+	bool   SuppressHeavy = false
 	using common_heavy_suppression
 	untracked int32  CheckHits = 25
 	untracked bool   UseMap = true
@@ -183,6 +186,7 @@ module g4SimHits = OscarProducer
 	double CFibre          = 0.50
 	double PEPerGeV        = 0.25
 	bool   TrackEM         = false
+	bool   UseShowerLibrary= false
 	double RefIndex        = 1.459
 	double Lambda1         = 280.0
 	double Lambda2         = 700.0
