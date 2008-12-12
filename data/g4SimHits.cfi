@@ -120,6 +120,12 @@ module g4SimHits = OscarProducer
 	bool   KillBeamPipe = true
 	double CriticalEnergyForVacuum = 2.0
 	double CriticalDensity = 1.e-15
+	double ToFMax          = 10000.0
+	vstring ToFMaxNames    = {}
+	vdouble ToFMaxs        = {}
+	vstring EkinNames      = {}
+	vdouble EkinThresholds = {}
+	vstring EkinParticles  = {}
 	untracked int32  Verbosity = 0
     }
     PSet TrackerSD =
@@ -140,12 +146,13 @@ module g4SimHits = OscarProducer
     PSet CaloSD = {
 	double EminTrack     = 1.0
 	double TmaxHit       = 1000.
-	vdouble EminHits     = {0.0, 0.0, 0.0, 0.0}
+	vdouble EminHits     = {0.015, 0.010, 0.0, 0.0}
 	vstring HCNames      = {"EcalHitsEB", "EcalHitsEE", "EcalHitsES","HcalHits"}
+	vdouble TmaxHits     = {500.0, 500.0, 500.0, 500.0}
 	bool   SuppressHeavy = false
 	using common_heavy_suppression
 	untracked int32  CheckHits = 25
-	untracked bool   UseMap = true
+	untracked bool   UseMap = false
 	untracked int32  Verbosity = 0
 	untracked bool   DetailedTiming = false
 	untracked bool   CorrectTOFBeam = false
@@ -186,7 +193,7 @@ module g4SimHits = OscarProducer
 	double EminTrack = 0.01
     }
     PSet HFShower = {
-	double ProbMax         = 0.7268
+	double ProbMax         = 1.0
 	double CFibre          = 0.50
 	double PEPerGeV        = 0.25
 	bool   TrackEM         = false
@@ -228,7 +235,13 @@ module g4SimHits = OscarProducer
     }
     PSet ZdcSD = {
 	int32  Verbosity = 0
-	double FiberDirection = 0.0
+	double FiberDirection   = 0.0
+        bool   UseShowerLibrary = false
+        bool   UseShowerHits    = false
+        double ZdcHitEnergyCut  = 0.0
+    }
+    PSet ZdcShowerLibrary = {
+        untracked int32  Verbosity = 0
     }
     PSet FP420SD =  {
 	untracked int32  Verbosity = 2
@@ -253,5 +266,8 @@ module g4SimHits = OscarProducer
 	double BirkC1 = 0.013
 	double BirkC2 = 0.0568
 	double BirkC3 = 1.75
+    }
+    PSet HFShowerProducer = {
+	untracked int32  Verbosity = 0
     }
 }
