@@ -239,10 +239,10 @@ module g4SimHits = OscarProducer
     }
     PSet ZdcSD = {
 	int32  Verbosity = 0
-	double FiberDirection   = 0.0
-        bool   UseShowerLibrary = false
+	double FiberDirection   = 45.0
+        bool   UseShowerLibrary = true
         bool   UseShowerHits    = false
-        double ZdcHitEnergyCut  = 0.0
+        double ZdcHitEnergyCut  = 1.0
     }
     PSet ZdcShowerLibrary = {
         untracked int32  Verbosity = 0
