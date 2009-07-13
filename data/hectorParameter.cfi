@@ -1,3 +1,0 @@
-block HectorEtaCut = {
-    double EtaCutForHector = 8.2 
-}
