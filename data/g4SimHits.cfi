@@ -104,6 +104,7 @@ module g4SimHits = OscarProducer
     {
 	bool   TrackNeutrino    = false
 	bool   KillHeavy        = false
+	bool   KillDeltaRay     = false
 	using common_heavy_suppression
 	untracked bool SavePrimaryDecayProductsAndConversionsInTracker = true
 	untracked bool SavePrimaryDecayProductsAndConversionsInCalo    = false

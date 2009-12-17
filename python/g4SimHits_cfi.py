@@ -105,12 +105,13 @@ g4SimHits = cms.EDProducer("OscarProducer",
     ),
     StackingAction = cms.PSet(
         common_heavy_suppression,
+        KillDeltaRay  = cms.bool(False),
+        TrackNeutrino = cms.bool(False),
+        KillHeavy     = cms.bool(False),
         SaveFirstLevelSecondary = cms.untracked.bool(False),
         SavePrimaryDecayProductsAndConversionsInTracker = cms.untracked.bool(True),
         SavePrimaryDecayProductsAndConversionsInCalo = cms.untracked.bool(False),
-        SavePrimaryDecayProductsAndConversionsInMuon = cms.untracked.bool(False),
-        TrackNeutrino = cms.bool(False),
-        KillHeavy = cms.bool(False)
+        SavePrimaryDecayProductsAndConversionsInMuon = cms.untracked.bool(False)
     ),
     TrackingAction = cms.PSet(
         DetailedTiming = cms.untracked.bool(False)

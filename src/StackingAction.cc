@@ -7,15 +7,17 @@
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
 
 #include "G4VProcess.hh"
-#include "G4PhysicalVolumeStore.hh"
+#include "G4LogicalVolumeStore.hh"
  
 StackingAction::StackingAction(const edm::ParameterSet & p): tracker(0),
-							     calo(0), muon(0) {
+							     beam(0), calo(0),
+							     muon(0) {
   trackNeutrino  = p.getParameter<bool>("TrackNeutrino");
   killHeavy      = p.getParameter<bool>("KillHeavy");
   kmaxIon        = p.getParameter<double>("IonThreshold")*MeV;
   kmaxProton     = p.getParameter<double>("ProtonThreshold")*MeV;
   kmaxNeutron    = p.getParameter<double>("NeutronThreshold")*MeV;
+  killDeltaRay   = p.getParameter<bool>("KillDeltaRay");
   savePDandCinTracker = p.getUntrackedParameter<bool>("SavePrimaryDecayProductsAndConversionsInTracker",false);
   savePDandCinCalo    = p.getUntrackedParameter<bool>("SavePrimaryDecayProductsAndConversionsInCalo",false);
   savePDandCinMuon    = p.getUntrackedParameter<bool>("SavePrimaryDecayProductsAndConversionsInMuon",false);
@@ -33,7 +35,10 @@ StackingAction::StackingAction(const edm::ParameterSet & p): tracker(0),
 				       << killHeavy << " protons below " 
 				       << kmaxProton <<" MeV, neutrons below "
 				       << kmaxNeutron << " MeV and ions"
-				       << " below " << kmaxIon << " MeV\n";
+				       << " below " << kmaxIon << " MeV and "
+                                       << "kill Delta Ray flag set to " 
+				       << killDeltaRay;
+
 
   initPointer();
 }
@@ -47,16 +52,25 @@ G4ClassificationOfNewTrack StackingAction::ClassifyNewTrack(const G4Track * aTra
   int flag = 0;
 
   NewTrackAction newTA;
-  if (aTrack->GetCreatorProcess()==0 || aTrack->GetParentID()==0)
+  if (aTrack->GetCreatorProcess()==0 || aTrack->GetParentID()==0) {
     newTA.primary(aTrack);
-  else {
+  } else if (aTrack->GetTouchable() == 0) {
+    edm::LogError("SimG4CoreApplication")
+      << "StackingAction: no touchable for track " << aTrack->GetTrackID()
+      << " from " << aTrack->GetParentID()
+      << " with PDG code " << aTrack->GetDefinition()->GetParticleName();
+    classification = fKill;
+  } else {
     const G4Track * mother = CurrentG4Track::track();
-    if ((savePDandCinTracker && isThisVolume(aTrack->GetTouchable(),tracker))||
-	(savePDandCinCalo && isThisVolume(aTrack->GetTouchable(),calo)) ||
-	(savePDandCinMuon && isThisVolume(aTrack->GetTouchable(),muon)))
+    if ((savePDandCinTracker && (isThisVolume(aTrack->GetTouchable(),tracker)||
+                                 isThisVolume(aTrack->GetTouchable(),beam))) ||
+        (savePDandCinCalo && isThisVolume(aTrack->GetTouchable(),calo)) ||
+        (savePDandCinMuon && isThisVolume(aTrack->GetTouchable(),muon)))
       flag = isItPrimaryDecayProductOrConversion(aTrack, *mother);
     if (saveFirstSecondary) flag = isItFromPrimary(*mother, flag);
     newTA.secondary(aTrack, *mother, flag);
+
+    if (aTrack->GetTrackStatus() == fStopAndKill) classification = fKill;
     if (killHeavy) {
       int    pdg = aTrack->GetDefinition()->GetPDGEncoding();
       double ke  = aTrack->GetKineticEnergy()/MeV;
@@ -70,13 +84,23 @@ G4ClassificationOfNewTrack StackingAction::ClassifyNewTrack(const G4Track * aTra
       if (pdg == 12 || pdg == 14 || pdg == 16 || pdg == 18) 
 	classification = fKill;
     }
+    if (killDeltaRay) {
+      if (aTrack->GetCreatorProcess()->GetProcessType() == fElectromagnetic &&
+          ((aTrack->GetCreatorProcess()->GetProcessName() == "eIoni") ||
+	   (aTrack->GetCreatorProcess()->GetProcessName() == "muIoni") ||
+	   (aTrack->GetCreatorProcess()->GetProcessName() == "hIoni") ||
+	   (aTrack->GetCreatorProcess()->GetProcessName() == "ionIoni")))
+        classification = fKill;
+    }
     LogDebug("SimG4CoreApplication") << "StackingAction:Classify Track "
 				     << aTrack->GetTrackID() << " Parent " 
 				     << aTrack->GetParentID() << " Type "
 				     << aTrack->GetDefinition()->GetParticleName() 
 				     << " K.E. " << aTrack->GetKineticEnergy()/MeV
-				     << " MeV as " << classification 
-				     << " Flag " << flag;
+				     << " MeV from process/subprocess " 
+				     << aTrack->GetCreatorProcess()->GetProcessType() << "|"
+				     << aTrack->GetCreatorProcess()->GetProcessName()
+				     << " as " << classification << " Flag " << flag;
   }
   return classification;
 }
@@ -87,27 +111,30 @@ void StackingAction::PrepareNewEvent() {}
 
 void StackingAction::initPointer() {
 
-  const G4PhysicalVolumeStore * pvs = G4PhysicalVolumeStore::GetInstance();
-  if (pvs) {
-    std::vector<G4VPhysicalVolume*>::const_iterator pvcite;
-    for (pvcite = pvs->begin(); pvcite != pvs->end(); pvcite++) {
+  const G4LogicalVolumeStore * lvs = G4LogicalVolumeStore::GetInstance();
+  if (lvs) {
+    std::vector<G4LogicalVolume*>::const_iterator lvcite;
+    for (lvcite = lvs->begin(); lvcite != lvs->end(); lvcite++) {
       if (savePDandCinTracker) {
-        if ((*pvcite)->GetName() == "Tracker") tracker = (*pvcite);
+        if ((*lvcite)->GetName() == "Tracker") tracker = (*lvcite);
+        if ((*lvcite)->GetName() == "BEAM")    beam    = (*lvcite);
       }
       if (savePDandCinCalo) {
-        if ((*pvcite)->GetName() == "CALO")    calo    = (*pvcite);
+        if ((*lvcite)->GetName() == "CALO")    calo    = (*lvcite);
       }
       if (savePDandCinMuon) {
-        if ((*pvcite)->GetName() == "MUON")    muon    = (*pvcite);
+        if ((*lvcite)->GetName() == "MUON")    muon    = (*lvcite);
       }
-      if ( (!savePDandCinTracker || tracker) && (!savePDandCinCalo || calo) &&
-	   (!savePDandCinMuon || muon ) ) break;
+      if ( (!savePDandCinTracker || (tracker && beam)) && 
+	   (!savePDandCinCalo || calo) && (!savePDandCinMuon || muon ) ) break;
     }
     edm::LogInfo("SimG4CoreApplication") << "Pointers for Tracker " << tracker
-                                         << ", Calo " << calo << ", Muon "
-					 << muon;
+                                         << ", BeamPipe " << beam << ", Calo " 
+					 << calo << ", Muon " << muon;
     if (tracker) edm::LogInfo("SimG4CoreApplication") << "Tracker vol name "
 						      << tracker->GetName();
+    if (beam)    edm::LogInfo("SimG4CoreApplication") << "BeamPipe vol name "
+						      << beam->GetName();
     if (calo)    edm::LogInfo("SimG4CoreApplication")<< "Calorimeter vol name "
 						     << calo->GetName();
     if (muon)    edm::LogInfo("SimG4CoreApplication") << "Muon vol name "
@@ -116,13 +143,15 @@ void StackingAction::initPointer() {
 }
 
 bool StackingAction::isThisVolume(const G4VTouchable* touch, 
-				  G4VPhysicalVolume* pv) const {
+				  G4LogicalVolume* lv) const {
 
-  int level = ((touch->GetHistoryDepth())+1);
-  if (level >= 3) {
-    int  ii   = level - 3;
-    bool flag = (touch->GetVolume(ii) == pv);
-    return flag;
+  bool flag = false;
+  if (lv != 0 && touch !=0) {
+    int level = ((touch->GetHistoryDepth())+1);
+    if (level >= 3) {
+      int  ii = level - 3;
+      flag    = (touch->GetVolume(ii)->GetLogicalVolume() == lv);
+    }
   }
   return false;
 }
@@ -135,10 +164,9 @@ int StackingAction::isItPrimaryDecayProductOrConversion(const G4Track * aTrack,
   const TrackInformation & motherInfo(extractor(mother));
   // Check whether mother is a primary
   if (motherInfo.isPrimary()) {
-    if (aTrack->GetCreatorProcess()->GetProcessType() == fDecay &&
-	aTrack->GetCreatorProcess()->GetProcessName() == "Decay") flag = 1;
+    if (aTrack->GetCreatorProcess()->GetProcessType() == fDecay) flag = 1;
     else if (aTrack->GetCreatorProcess()->GetProcessType() == fElectromagnetic &&
-	     aTrack->GetCreatorProcess()->GetProcessName() == "conv") flag = 2;
+             aTrack->GetCreatorProcess()->GetProcessName() == "conv") flag = 2;
   }
   return flag;
 }
